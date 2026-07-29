@@ -1,0 +1,1 @@
+& "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe" --python $args[0]
