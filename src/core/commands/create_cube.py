@@ -7,5 +7,6 @@ class CreateCubeCommand(Command):
 
         controller.create_cube(
             size=data.get("size", 2),
-            location=data.get("location", (0, 0, 0))
+            location=data.get("location", (0, 0, 0)),
+            name=data.get("name")
         )

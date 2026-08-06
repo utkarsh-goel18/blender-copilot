@@ -9,12 +9,15 @@ from src.core.executor import CommandExecutor
 parser = CommandParser()
 executor = CommandExecutor()
 
-command = "create sphere radius=2 name=ball"
-
-parsed = parser.parse(command)
-
+# Clear the scene
 executor.controller.clear_scene()
 
+# Create a cube named "table"
+parsed = parser.parse("create cube name=table")
 executor.execute(parsed)
 
-print("Command executed successfully!")
+# Move the cube
+parsed = parser.parse("move object name=table x=5 y=2 z=1")
+executor.execute(parsed)
+
+print("Move test completed!")
