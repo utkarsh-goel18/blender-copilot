@@ -1,81 +1,193 @@
+<div align="center">
+
 # Blender Copilot
 
-Blender Copilot is an open-source Blender add-on that allows users to control Blender using simple text commands.
+### 🧠 Control Blender with Commands
 
-Instead of navigating menus or writing Blender scripts manually, users can type commands like:
+*A modular Blender add-on that transforms simple commands into Blender operations.*
+
+![Python](https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python)
+![Blender](https://img.shields.io/badge/Blender-5.2-orange?style=for-the-badge&logo=blender)
+![Status](https://img.shields.io/badge/Status-Active%20Development-success?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-v0.2-blueviolet?style=for-the-badge)
+
+---
+
+### ✨ Create • Move • Rotate • Scale • Delete
+
+<img width="900" src="docs/images/demo.gif">
+
+*(Demo GIF coming soon)*
+
+</div>
+
+---
+
+# What is Blender Copilot?
+
+Blender Copilot is an open-source Blender add-on that allows users to interact with Blender using simple commands instead of manually navigating menus or writing Blender scripts.
+
+Instead of:
+
+- Searching through Blender menus
+- Writing repetitive Python code
+- Manually manipulating objects
+
+you simply type what you want.
 
 ```text
 create cube name=table size=3
+
 move table x=5 y=2 z=1
+
 rotate table z=90
-scale table x=2 y=2 z=1
+
+scale table x=2 y=2 z=2
+
 delete table
 ```
 
-The add-on parses these commands and executes them directly inside Blender using Blender's Python API (`bpy`).
+Blender Copilot handles the rest.
 
 ---
 
-## Current Status
+# Why I Started This Project
 
-**Version:** v0.2 (Work in Progress)
+Blender already exposes an incredibly powerful Python API, but interacting with it still requires programming knowledge.
 
-### Implemented
+The idea behind Blender Copilot is simple:
 
-- Blender Add-on
-- Custom Sidebar UI
-- Command Parser
-- Registry-based Command Execution
+> **What if Blender could be controlled through commands today, and natural language tomorrow?**
+
+This project is my attempt to build that bridge.
+
+---
+
+# Features
+
+## Blender Add-on
+
+- Installable Blender Add-on
+- Custom Sidebar Panel
+- Interactive Command Box
+- Execute Button
+
+---
+
+## Command Engine
+
+- Modular Parser
+- Command Registry
+- Command Executor
 - Blender Controller
-- Object Creation
-    - Cube
-    - Sphere
-    - Cylinder
-- Object Manipulation
-    - Move
-    - Rotate
-    - Scale
-    - Delete
 
 ---
 
-# Demo
+## Supported Commands
 
-Current workflow:
+| Command | Status |
+|----------|:------:|
+| Create Cube | ✅ |
+| Create Sphere | ✅ |
+| Create Cylinder | ✅ |
+| Move Object | ✅ |
+| Rotate Object | ✅ |
+| Scale Object | ✅ |
+| Delete Object | ✅ |
+
+---
+
+# Example
+
+Creating an object
+
+```text
+create cube name=table size=3
+```
+
+Moving it
+
+```text
+move table x=5 y=2 z=1
+```
+
+Rotating it
+
+```text
+rotate table z=90
+```
+
+Scaling it
+
+```text
+scale table x=2 y=2 z=2
+```
+
+Deleting it
+
+```text
+delete table
+```
+
+---
+
+# Software Architecture
 
 ```
-User
-    │
-    ▼
-Types Command
-    │
-    ▼
-Blender Copilot Panel
-    │
-    ▼
-Command Parser
-    │
-    ▼
-Command Executor
-    │
-    ▼
-Command Registry
-    │
-    ▼
-Blender Controller
-    │
-    ▼
-Blender Python API (bpy)
-    │
-    ▼
-Scene Updated
+                      User
+
+                        │
+
+                        ▼
+
+                Blender Add-on UI
+
+                        │
+
+                        ▼
+
+                 Command Parser
+
+                        │
+
+                        ▼
+
+                Command Executor
+
+                        │
+
+                        ▼
+
+                Command Registry
+
+                        │
+
+                        ▼
+
+               Blender Controller
+
+                        │
+
+                        ▼
+
+                 Blender Python API
+
+                        │
+
+                        ▼
+
+                    Blender Scene
 ```
+
+Each layer has a single responsibility.
+
+This modular architecture makes Blender Copilot easy to extend while keeping the codebase maintainable.
 
 ---
 
 # Project Structure
 
-```
+```text
 blender-copilot/
 
 ├── addon/
@@ -85,194 +197,176 @@ blender-copilot/
 │       ├── panels.py
 │       └── properties.py
 │
+├── docs/
+├── examples/
+├── tests/
+│
 ├── src/
 │   ├── blender/
-│   │   ├── controller.py
-│   │   ├── camera.py
-│   │   ├── materials.py
-│   │   ├── objects.py
-│   │   └── scene.py
-│   │
+│   ├── communication/
 │   ├── core/
+│   │   ├── commands/
 │   │   ├── executor.py
 │   │   ├── parser.py
 │   │   └── registry.py
 │   │
-│   ├── communication/
 │   ├── models/
 │   ├── ui/
 │   └── utils/
 │
-├── examples/
-├── tests/
-├── docs/
-└── README.md
+├── README.md
+└── requirements.txt
 ```
 
 ---
 
-# Features
+# Current Progress
 
-## Create Objects
+### Core Engine
 
-```text
-create cube
-create sphere
-create cylinder
-```
+- [x] Blender Controller
+- [x] Command Parser
+- [x] Command Registry
+- [x] Command Executor
 
-Example:
+### Blender Integration
 
-```text
-create cube name=table size=3
-```
+- [x] Blender Add-on
+- [x] Sidebar UI
+- [x] Execute Commands
 
----
+### Object Operations
 
-## Move Objects
-
-```text
-move table x=5 y=0 z=2
-```
-
----
-
-## Rotate Objects
-
-```text
-rotate table z=90
-```
-
----
-
-## Scale Objects
-
-```text
-scale table x=2 y=2 z=1
-```
-
----
-
-## Delete Objects
-
-```text
-delete table
-```
-
----
-
-# Architecture
-
-The project is designed with a modular architecture.
-
-```
-                Blender UI
-                     │
-                     ▼
-              Command Parser
-                     │
-                     ▼
-             Command Executor
-                     │
-                     ▼
-             Command Registry
-                     │
-                     ▼
-           Blender Controller
-                     │
-                     ▼
-                  Blender API
-```
-
-Each layer has a single responsibility, making the project easy to maintain and extend.
-
----
-
-# Why this architecture?
-
-Instead of hardcoding Blender operations inside the UI, Blender Copilot separates:
-
-- User Interface
-- Command Parsing
-- Command Execution
-- Blender API Calls
-
-This allows future interfaces (CLI, REST API, AI agents, voice assistants, etc.) to reuse the same command engine.
+- [x] Create
+- [x] Move
+- [x] Rotate
+- [x] Scale
+- [x] Delete
 
 ---
 
 # Roadmap
 
-## v0.3
+## Version 0.3
 
-- Better command parser
-- More natural commands
+- Better parser
+- Improved command syntax
+- Duplicate objects
+- Rename objects
 - Object selection
-- Object listing
 
 ---
 
-## v0.4
+## Version 0.4
 
 - Materials
 - Lights
-- Camera control
+- Cameras
 - Rendering
-
----
-
-## v0.5
-
-- Primitive modifiers
-- Collections
 - Scene management
 
 ---
 
-## v0.6
+## Version 0.5
 
-- AI-assisted command generation
-- Context-aware suggestions
+- External communication layer
+- Desktop companion application
+- Live Blender connection
 
 ---
 
-## v1.0
+## Version 1.0
 
 Natural language Blender assistant.
 
 Example:
 
-```
-Create a wooden dining table with four legs.
+```text
+Create a modern study room with
+a wooden desk,
+a monitor,
+a chair,
+and warm lighting.
 ```
 
 ↓
 
-Automatically generates the complete Blender scene.
+Blender Copilot generates the scene automatically.
 
 ---
 
-# Technologies
+# Future Vision
 
-- Python 3.11
+Blender Copilot is being designed as a reusable execution engine rather than a collection of Blender scripts.
+
+The long-term goal is to allow different interfaces—including AI assistants, desktop applications, web apps, and automation tools—to communicate with Blender through the same modular command pipeline.
+
+---
+
+# Tech Stack
+
+- Python
 - Blender 5.2
-- Blender Python API (bpy)
+- Blender Python API (`bpy`)
 - Object-Oriented Programming
+- Command Pattern
 - Registry Pattern
-- Command Parsing
 
 ---
 
-# Goals
+# Installation
 
-The long-term vision is to build an intelligent Blender assistant capable of understanding natural language and translating it into Blender operations while maintaining a clean, modular software architecture.
+Clone the repository
+
+```bash
+git clone https://github.com/<your-username>/blender-copilot.git
+```
+
+Open Blender
+
+```
+Edit
+→ Preferences
+→ Add-ons
+→ Install from Disk
+```
+
+Select
+
+```
+addon/blender_copilot.zip
+```
+
+Enable the add-on.
+
+Press **N** inside the 3D Viewport and open the **Copilot** tab.
+
+Start typing commands.
 
 ---
 
-## Author
+# Contributing
 
-**Utkarsh Goel**
+Contributions, feature ideas, bug reports, and discussions are always welcome.
+
+If you'd like to contribute, feel free to fork the repository and open a pull request.
+
+---
+
+# Author
+
+## Utkarsh Goel
 
 Electrical & Computer Engineering Student
 
-Building Blender Copilot as a learning project to explore Python, software architecture, and Blender automation.
+Passionate about software architecture, AI, automation, and developer tools.
+
+---
+
+<div align="center">
+
+### ⭐ If you like this project, consider giving it a star.
+
+It helps more people discover Blender Copilot.
+
+</div>
