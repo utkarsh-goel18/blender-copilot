@@ -273,6 +273,6 @@ The long-term vision is to build an intelligent Blender assistant capable of und
 
 **Utkarsh Goel**
 
-First-year Electrical & Computer Engineering Student
+Electrical & Computer Engineering Student
 
 Building Blender Copilot as a learning project to explore Python, software architecture, and Blender automation.
