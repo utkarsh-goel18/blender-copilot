@@ -23,6 +23,7 @@ class BlenderController:
         location=(0, 0, 0),
         name: str | None = None,
     ):
+        
         bpy.ops.mesh.primitive_cube_add(
             size=size,
             location=location
